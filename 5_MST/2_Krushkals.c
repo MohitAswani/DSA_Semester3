@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define V 5
-#define INT_MAX __INT_MAX__
+// #define INT_MAX __INT_MAX__
 int parent[V];
  
 // Find set of vertex i
