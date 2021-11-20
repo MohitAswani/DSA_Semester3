@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#define V 9
+#define V 4
 void prims(int graph[V][V])
 {
     printf("PRIMS : \n\n");
@@ -11,9 +11,9 @@ void prims(int graph[V][V])
     int parent[V];
     for (int i = 0; i < V; i++)
     {
-        key[i] = __INT_MAX__;
+        key[i] = INT_MAX;
         mSet[i] = 0;
-        parent[i] = -1;
+        parent[i]=-1;
     }
 
     key[0] = 0;
@@ -29,12 +29,12 @@ void prims(int graph[V][V])
             {
                 u = i;
             }
-            else if (mSet[i] == 0 && u != -1 && parent[i] != -1)
+            else if(mSet[i]==0&&u!=-1&&parent[i]!=-1)
             {
-                printf("edge (%d,%d) is rejected because its not the small edge\n", parent[i], i);
+                // printf("Edge (%d,%d) is rejected because its not the small edge\n",parent[i],i);
             }
         }
-        printf("edge (%d,%d) is selected\n", parent[u], u);
+        // printf("Edge (%d,%d) is selected\n",parent[u],u);
         mSet[u] = 1;
         cost += key[u];
         for (int v = 0; v < V; v++) // theta(V)
@@ -52,20 +52,16 @@ void prims(int graph[V][V])
         printf("Edge %d:(%d, %d) cost:%d \n",
                (i + 1), parent[i], i, graph[i][parent[i]]);
     }
-    printf("\nCost:%d\n", cost);
+    printf("\nCost:%d\n",cost);
 }
 int main()
 {
-    int graph[V][V] = {{0, 4, 0, 0, 0, 0, 0, 8, 0},
-                       {4, 0, 8, 0, 0, 0, 0, 11, 0},
-                       {0, 8, 0, 7, 0, 4, 0, 0, 2},
-                       {0, 0, 7, 0, 9, 14, 0, 0, 0},
-                       {0, 0, 0, 9, 0, 10, 0, 0, 0},
-                       {0, 0, 4, 14, 10, 0, 2, 0, 0},
-                       {0, 0, 0, 0, 0, 2, 0, 1, 6},
-                       {8, 11, 0, 0, 0, 0, 1, 0, 7},
-                       {0, 0, 2, 0, 0, 0, 6, 7, 0}};
-
+    int graph[V][V] = {
+        {0, 5, 8, 0},
+        {5, 0, 10, 15},
+        {8, 10, 0, 20},
+        {0, 15, 20, 0},
+    };
     prims(graph);
 
     return 0;
